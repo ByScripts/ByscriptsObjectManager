@@ -51,26 +51,6 @@ abstract class AbstractObjectManager
         }
     }
 
-    /**
-     * Call a method dynamically
-     * (seems ugly, but performance is around 50% better than a simple CUFA.
-     * @param string $method
-     * @param array  $arguments
-     *
-     * @return mixed
-     */
-    protected function callMethod($method, array $arguments)
-    {
-        switch(count($arguments)) {
-            case 0: return $this->$method();
-            case 1: return $this->$method($arguments[0]);
-            case 2: return $this->$method($arguments[0], $arguments[1]);
-            case 3: return $this->$method($arguments[0], $arguments[1], $arguments[2]);
-            case 4: return $this->$method($arguments[0], $arguments[1], $arguments[2], $arguments[3]);
-            default: return call_user_func_array(array($this, $method), $arguments);
-        }
-    }
-
     protected function callProcessMethod($action, array $data)
     {
         $name = 'process' . ucfirst($action);
@@ -79,7 +59,7 @@ abstract class AbstractObjectManager
             throw new \Exception(sprintf('Method not found: %s in class %s', $name, get_called_class()));
         }
 
-        return $this->callMethod($name, $data);
+        return call_user_func_array(array($this, $name), $data);
     }
 
     protected function callSuccessMethod($action, array $data)
@@ -87,7 +67,7 @@ abstract class AbstractObjectManager
         $name = 'on' . ucfirst($action) . 'Success';
 
         if (method_exists($this, $name)) {
-            $this->callMethod($name, $data);
+            return call_user_func_array(array($this, $name), $data);
         }
     }
 
@@ -96,7 +76,7 @@ abstract class AbstractObjectManager
         $name = 'on' . ucfirst($action) . 'Error';
 
         if (method_exists($this, $name)) {
-            $this->callMethod($name, $data);
+            return call_user_func_array(array($this, $name), $data);
         }
     }
 }

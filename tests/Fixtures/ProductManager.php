@@ -109,4 +109,9 @@ class ProductManager extends AbstractObjectManager
     {
         echo $a * $b * $c * $d * $e * $processResult;
     }
+
+    public function processNoOnError()
+    {
+        throw new ObjectManagerException('Too bad!');
+    }
 }

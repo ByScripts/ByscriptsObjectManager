@@ -65,6 +65,12 @@ class ObjectManagerTest extends PHPUnit_Framework_TestCase
         $this->manager->execute('badWine', null);
     }
 
+    public function testErrorWithoutEventMethod()
+    {
+        $this->expectOutputString('');
+        $this->manager->execute('noOnError', null);
+    }
+
     public function testSuccessWithProcessResult()
     {
         $this->expectOutputString('I like beer');
