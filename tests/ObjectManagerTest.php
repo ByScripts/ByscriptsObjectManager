@@ -95,4 +95,9 @@ class ObjectManagerTest extends PHPUnit_Framework_TestCase
         $this->manager->execute('whatTimeIsIt', 9, 30);
     }
 
+    public function testLotOfArguments()
+    {
+        $this->expectOutputString("115200");
+        $this->manager->execute('lotOfArgs', 2, 4, 6, 8, 10);
+    }
 }

@@ -99,4 +99,14 @@ class ProductManager extends AbstractObjectManager
     {
         printf('It is... %d:%d?! %s', $hour, $minute, $errorMessage);
     }
+
+    public function processLotOfArgs($a, $b, $c, $d, $e)
+    {
+        return $a + $b + $c + $d + $e;
+    }
+
+    public function onLotOfArgsSuccess($a, $b, $c, $d, $e, $processResult)
+    {
+        echo $a * $b * $c * $d * $e * $processResult;
+    }
 }
