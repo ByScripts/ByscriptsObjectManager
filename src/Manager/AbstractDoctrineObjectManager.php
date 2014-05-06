@@ -1,11 +1,10 @@
 <?php
 
 
-namespace Byscripts\Bundle\ObjectManagerBundle\Manager;
+namespace Byscripts\ObjectManager\Manager;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\Persistence\ObjectRepository;
-use Doctrine\DBAL\LockMode;
 
 abstract class AbstractDoctrineObjectManager extends AbstractObjectManager
 {
@@ -36,7 +35,7 @@ abstract class AbstractDoctrineObjectManager extends AbstractObjectManager
      *
      * @return null|object
      */
-    public function find($id, $lockMode = LockMode::NONE, $lockVersion = null)
+    public function find($id, $lockMode = 0, $lockVersion = null)
     {
         return $this->getRepository()->find($id, $lockMode, $lockVersion);
     }

@@ -1,7 +1,7 @@
 {
     "name": "byscripts/object-manager",
     "description": "A simple object manager",
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
         {
@@ -9,6 +9,9 @@
             "email": "thierry@byscripts.info"
         }
     ],
+    "require-dev": {
+        "doctrine/common": "~2.3"
+    },
     "autoload": {
         "psr-4": {
             "Byscripts\\ObjectManager\\": "src/",
