@@ -195,7 +195,7 @@ abstract class AbstractDoctrineObjectManager extends AbstractObjectManager
     /**
      * @param object $object
      */
-    protected function processSave($object)
+    protected function processSave($object, $isNew)
     {
         $this->persistAndFlush($object);
     }
